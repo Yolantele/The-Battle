@@ -21,4 +21,12 @@ require 'sinatra/base'
       erb(:play)
     end
 
+    post '/play' do
+      @player1 = session[:player1]
+      @player2 = session[:player2]
+      session[:hit] = "You've attacked #{@player2}"
+      @hit = session[:hit]
+      erb(:play)
+    end
+
   end

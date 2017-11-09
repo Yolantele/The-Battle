@@ -1,4 +1,5 @@
 require 'capybara/rspec'
+require './spec/features/web_helpers'
 
 describe 'Battle', :type => :feature do
 
@@ -8,20 +9,23 @@ describe 'Battle', :type => :feature do
       expect(page).to have_content "Hello players!!"
     end
     it 'should display names of the players' do
-      visit '/'
-      fill_in 'player1', with: "JJ"
-      fill_in 'player2', with: "Marie"
-      click_button 'Start'
+      sign_in_and_play
       expect(page).to have_content "JJ vs Marie"
     end
   end
-  context ' When starting a game' do
+  context 'When starting a game' do
     it 'should display User 2 hitpoints to User 1' do
-    visit '/'
-    fill_in 'player1', with: 'Cris'
-    fill_in 'player2', with: 'JJ'
-    click_button 'Start'
+    sign_in_and_play
     expect(page).to have_content 'Player2 - HP = 10'
     end
   end
+
+  context 'When attacking a player' do
+    it 'Should have a confirmation' do
+      sign_in_and_play
+      click_button 'Attack'
+      expect(page).to have_content "You've attacked Marie"
+    end
+  end
+
 end
