@@ -15,8 +15,8 @@ describe 'Battle', :type => :feature do
   end
   context 'When starting a game' do
     it 'should display User 2 hitpoints to User 1' do
-    sign_in_and_play
-    expect(page).to have_content 'Player2 - HP = 10'
+      sign_in_and_play
+      expect(page).to have_content 'Player2 - HP = 10'
     end
   end
 
