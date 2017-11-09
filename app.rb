@@ -12,17 +12,17 @@ require './lib/game'
     end
 
     post '/names' do
-      $game = Game.new(Player.new(params[:player1]), Player.new(params[:player2]))
+      Game.game = Game.new(Player.new(params[:player1]), Player.new(params[:player2]))
       redirect "/play"
     end
 
     get '/play' do
-      @game = $game
+      @game = Game.game
       erb(:play)
     end
 
     post '/play' do
-      @game = $game
+      @game = Game.game
       @game.attack
       session[:hit] = "You've attacked #{@game.player_turn}"
       @hit = session[:hit]

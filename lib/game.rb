@@ -11,6 +11,14 @@ class Game
     @loser = nil
   end
 
+  def self.game
+    @@game
+  end
+
+  def self.game=(value)
+    @@game = value
+  end
+
   def attack
     attacked_player.deduct_hp
     loser_player?
