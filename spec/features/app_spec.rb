@@ -60,4 +60,18 @@ describe 'Battle', :type => :feature do
       expect(page).to have_content "JJ's turn!"
     end
   end
+
+  context 'when losing a game' do
+    it 'Should show a lose message for player 2' do
+      sign_in_and_play
+      19.times { click_button 'Attack' }
+      expect(page).to have_content "Marie you've lost"
+    end
+
+    it 'Should show a lose message for player 1' do
+      sign_in_and_play
+      20.times { click_button 'Attack' }
+      expect(page).to have_content "JJ you've lost"
+    end
+  end
 end

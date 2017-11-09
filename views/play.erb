@@ -8,4 +8,8 @@
 <%= @hit %>
 <% end %> <br>
 
-<%= @game.player_turn%>'s turn!
+<%= @game.player_turn%>'s turn! <br>
+
+<% if @game.loser %>
+<%= @game.loser %> you've lost
+<% end %> <br>
