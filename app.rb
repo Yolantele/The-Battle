@@ -23,8 +23,9 @@ require './lib/game'
 
     post '/play' do
       @game = $game
-      @game.attack(@game.player2)
-      @hit = "You've attacked #{@game.player2.name}"
+      @game.attack
+      session[:hit] = "You've attacked #{@game.player_turn}"
+      @hit = session[:hit]
       erb(:play)
     end
 

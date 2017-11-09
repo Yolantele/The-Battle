@@ -7,9 +7,29 @@ class Game
   def initialize(player1,player2)
     @player1 = player1
     @player2 = player2
+    @turn = 1
   end
 
-  def attack(player)
-    player.deduct_hp
+  def attack
+    attacked_player.deduct_hp
+    switch_turn
   end
+
+  def player_turn
+    return @player1.name if @turn == 1
+      @player2.name
+  end
+
+  private
+
+  def switch_turn
+    return @turn = 2 if @turn == 1
+    @turn = 1
+  end
+
+  def attacked_player
+    return @player2 if @turn == 1
+    @player1
+  end
+
 end
