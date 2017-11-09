@@ -10,13 +10,13 @@ describe 'Battle', :type => :feature do
     end
     it 'should display names of the players' do
       sign_in_and_play
-      expect(page).to have_content "JJ vs Marie"
+      expect(page).to have_content "JJ - HP = 100 vs Marie"
     end
   end
   context 'When starting a game' do
     it 'should display User 2 hitpoints to User 1' do
       sign_in_and_play
-      expect(page).to have_content 'Player2 - HP = 10'
+      expect(page).to have_content 'Marie - HP = 100'
     end
   end
 
@@ -25,6 +25,11 @@ describe 'Battle', :type => :feature do
       sign_in_and_play
       click_button 'Attack'
       expect(page).to have_content "You've attacked Marie"
+    end
+    it 'should reduces HP by 10' do
+      sign_in_and_play
+      click_button 'Attack'
+      expect(page).to have_content 'Marie - HP = 90'
     end
   end
 

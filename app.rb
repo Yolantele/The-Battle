@@ -25,6 +25,7 @@ require './lib/player'
     post '/play' do
       @player1 = $player1
       @player2 = $player2
+      @player2.deduct_hp
       session[:hit] = "You've attacked #{@player2.name}"
       @hit = session[:hit]
       erb(:play)
